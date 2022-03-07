@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Colors from "./components/color/colors";
+import Footer from "./components/footer/Footer";
 
 function App() {
+  const [color, setColor] = useState(200);
+
+  const zero = 0;
+  let percentages = [];
+
+  for (let i = 0; i <= 96; i += 4) {
+    percentages.push(zero + i);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {percentages.map((item) => (
+        <Colors key={item} item={item} color={color} />
+      ))}
+      <div className="footer">
+        <Footer setColor={setColor} />
+      </div>
     </div>
   );
 }
